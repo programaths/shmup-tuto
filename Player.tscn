@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://playerShip1_blue.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://WeaponSingleBlue.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 23.0
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 25
+script = ExtResource( 2 )
+
+[node name="PlayerShip1Blue" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 9 )
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="WeaponPosition" type="Position2D" parent="."]
+position = Vector2( 0, -59 )
+
+[node name="Weapon" parent="." instance=ExtResource( 3 )]

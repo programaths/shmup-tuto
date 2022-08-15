@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://black.png" type="Texture" id=2]
+[ext_resource path="res://ScrollinBackground.gd" type="Script" id=3]
+[ext_resource path="res://Chore1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ForwardCamera.gd" type="Script" id=5]
+[ext_resource path="res://EnemyBlue4.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Stranger-CCB_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://PowerUpTripleBlue.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ka1.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Level.gd" type="Script" id=10]
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 9 )
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 74, -163, -282.667, 0.777863, 282.667, -0.777863, 308, 659, -181.333, 0, 181.333, 0, 660, -77, 0, 0, 0, 0, 916, 772 )
+}
+
+[node name="Level1" type="Node"]
+script = ExtResource( 10 )
+
+[node name="ForwardCamera" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+script = ExtResource( 5 )
+
+[node name="Player" parent="ForwardCamera" instance=ExtResource( 1 )]
+position = Vector2( 529, 256 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ScrollinBackground" type="Sprite" parent="CanvasLayer"]
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 600 )
+script = ExtResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="RtScore" type="RichTextLabel" parent="CanvasLayer/MarginContainer"]
+unique_name_in_owner = true
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 1008.0
+margin_bottom = 584.0
+size_flags_horizontal = 3
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[right][rainbow][wave]SCORE: 0[/wave][/rainbow][/right]"
+text = "SCORE: 0"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -30.0
+autoplay = true
+
+[node name="Chore1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 8, -811 )
+
+[node name="Chore2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 13, -1815 )
+curve = SubResource( 1 )
+
+[node name="PowerUpTripleBlue" parent="." instance=ExtResource( 8 )]
+position = Vector2( 523, -1116 )
+
+[node name="EnemyBlue4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 279, -2326 )
+
+[node name="EnemyBlue5" parent="." instance=ExtResource( 6 )]
+position = Vector2( 582, -2326 )
+
+[node name="EnemyBlue6" parent="." instance=ExtResource( 6 )]
+position = Vector2( 931, -2315 )
+
+[node name="EnemyBlue7" parent="." instance=ExtResource( 6 )]
+position = Vector2( 439, -2522 )
+
+[node name="EnemyBlue8" parent="." instance=ExtResource( 6 )]
+position = Vector2( 760, -2497 )
